@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index";
+
+    string[] ccsActive = new string[10];
+
+    ccsActive[ViewBag.activeIndex] = "active";
+}
+
+<div class="span3">
+    <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+            <li class="nav-header">Sidebar</li>
+            <li class="@ccsActive[0]"><a href="#">Link 0</a></li>
+            <li class="@ccsActive[1]"><a href="#">Link 1</a></li>
+            <li class="@ccsActive[2]"><a href="#">Link 2</a></li>
+            <li class="@ccsActive[3]"><a href="#">Link 3</a></li>
+            <li class="nav-header">Sidebar</li>
+            <li class="@ccsActive[4]"><a href="#">Link 4</a></li>
+            <li class="@ccsActive[5]"><a href="#">Link 5</a></li>
+            <li class="@ccsActive[6]"><a href="#">Link 6</a></li>
+            <li class="@ccsActive[7]"><a href="#">Link 7</a></li>
+            <li class="@ccsActive[8]"><a href="#">Link 8</a></li>
+            <li class="@ccsActive[9]"><a href="#">Link 9</a></li>
+        </ul>
+    </div>
+</div>

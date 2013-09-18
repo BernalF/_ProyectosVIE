@@ -1,0 +1,95 @@
+﻿@model ITCR.ProyectosVIE.Models.Projects.IndexModel
+@{
+    ViewBag.Title = "Index";
+
+    string span = Model.SelectedProject == null ? "span12" : "span9";
+
+    ViewBag.hasGrid = true;
+    
+}
+@section styles {
+
+}
+
+<div class="container">
+    <div class="row">
+        @if (@Model.SelectedProject != null)
+        {
+            <div class="span3">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">GESTION DE PROYECTO</li>
+                        <li class="active"><a href="#">Datos Generales</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="nav-header">DATOS POST APROBACIÓN</li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="nav-header">FORMULARIOS DE EVALUACIÓN</li>
+                        <li><a href="#">Creación de Formularios</a></li>
+                        <li><a href="#">Preguntas</a></li>
+                        <li><a href="#">Aplicar Evaluaciones</a></li>
+                        <li class="nav-header">SALIDAS</li>
+                        <li><a href="#">Indicadores</a></li>
+                    </ul>
+                </div>
+            </div>
+        }
+
+        <div class="@span">
+            <div class="hero-unit">
+
+                @if (@Model.SelectedProject == null)
+                {
+                    <h2>Seleccionar Proyecto...</h2>
+                    <a href="@Url.Action("New", "Home", routeValues: null)" class="btn btn-primary btn-large offset9"><i class="icon-plus"></i>Agregar</a>
+                    <p></p>
+                    
+                    
+                    @(Html.Grid(Model.ProjectsList)
+                    .SetLanguage("es")
+                    .Sortable()
+                    .Filterable()
+                    .AutoGenerateColumns()
+                    .Columns(c =>
+                        {
+                            c.Add()
+                                .Encoded(false)
+                                .Sanitized(false)
+                                .SetWidth(145)
+                                .RenderValueAs(m => @<span>
+                                    <a  href="@Url.Action("SelectProject", "Home", new { id = m.ID_PROYECTO })" class="btn btn btn-success btn-small" >
+                                        <i class="icon-hand-right"></i>Seleccionar
+                                    </a>
+                                    <a  href="@Url.Action("Edit", "Home", new { id = m.ID_PROYECTO })" class="btn btn btn-warning btn-small" >
+                                        <i class="icon-pencil"></i>Editar
+                                    </a>
+                                </span>);
+                        }))                    
+                    
+                    if (Model.ProjectsList.Count == 0)
+                    { 
+                    <p>No existe ningun proyecto creado</p>
+                    }
+
+                }
+                else
+                {
+                    <div>Información del proyecto seleccionado: </div>
+                    <div>@Model.SelectedProject.NOM_PROYECTO</div>         
+                    <a  href="@Url.Action("ChangeProject", "Home")" class="btn btn-danger"><i class="icon-arrow-left"></i>Cancelar</a>       
+                }
+
+            </div>
+
+        </div>
+        <!--/span-->
+    </div>
+</div>
+
+

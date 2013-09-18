@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+
+    string[] ccsActive = new string[30];
+
+    ccsActive[ViewBag.activeIndex] = "active";
+}
+
+<aside class="span3">
+    <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+            <li class="nav-header">Cátalogos Generales</li>
+            <li class="@ccsActive[0]"><a href="@Url.Action("tiposPlazaI","Parametros")">Tipos de Plaza</a></li>
+            <li class="@ccsActive[1]"><a href="#">Tipos de Proyecto</a></li>
+            <li class="@ccsActive[2]"><a href="#">Estados de Proyectos</a></li>
+            <li class="@ccsActive[3]"><a href="#">Disciplinas</a></li>
+            <li class="@ccsActive[4]"><a href="#">Carreras</a></li>
+            <li class="@ccsActive[5]"><a href="#">Objetivos Económicos</a></li>
+            <li class="@ccsActive[6]"><a href="#">Población Beneficiaria</a></li>
+            <li class="nav-header">Otros</li>
+            <li class="@ccsActive[8]"><a href="#">Provincias</a></li>
+            <li class="@ccsActive[9]"><a href="#">Cantones</a></li>
+            <li class="@ccsActive[10]"><a href="#">Distritos</a></li>
+            <li class="@ccsActive[11]"><a href="#">Medios</a></li>
+            <li class="@ccsActive[12]"><a href="#">Impactos</a></li>
+            <li class="@ccsActive[13]"><a href="#">Formatps de Cuenta</a></li>
+            <li class="@ccsActive[14]"><a href="#">Cuentas Contables</a></li>
+            <li class="@ccsActive[15]"><a href="#">Entidades Externas</a></li>
+        </ul>
+    </div>
+</aside>

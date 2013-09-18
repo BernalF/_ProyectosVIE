@@ -1,0 +1,106 @@
+﻿@model ITCR.ProyectosVIE.Models.Projects.BasicInfo
+@{
+    ViewBag.Title = "New";
+
+    string error = "error";
+}
+
+@section styles {
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <div class="hero-unit">
+        <div class="row-fluid">
+            <div class="span3 offset10">
+                <a href="#delConfirm" role="button" class="btn btn-danger" data-toggle="modal"><i class="icon-trash"></i>Eliminar</a>
+            </div>
+        </div>
+        <h3>Edición de Proyecto</h3>
+        <dl></dl>
+        @using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+        {                   
+            @Html.HiddenFor(m => m.ID_PROYECTO)
+            <div class="control-group">
+                <label class="control-label">Código de Proyecto</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.COD_PROYECTO, htmlAttributes: new { placeholder = "Código de Proyecto" })
+
+
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Nombre de Proyecto</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.NOM_PROYECTO, htmlAttributes: new { placeholder = "Nombre de Proyecto" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Nombre de Coordinador</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.NOM_COORDINADOR, htmlAttributes: new { placeholder = "Nombre de Coordinador" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Código Tipo Proyecto</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.COD_TIPOPROYECTO, htmlAttributes: new { placeholder = "Código Tipo Proyecto" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Código Estado Proyecto</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.COD_ESTADO_PROYECTO, htmlAttributes: new { placeholder = "Código Estado Proyecto" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Fecha Inicio</label>
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.FEC_INICIO)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <a  href="@Url.Action("Index", "Home")" class="btn btn-danger"><i class="icon-arrow-left"></i>Cancelar</a>
+                    <button type="submit" class="btn btn-success"><i class="icon-ok-sign"></i>Salvar</button>
+                </div>
+            </div>
+        }
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("", htmlAttributes: new { @class = "alert alert-error" })
+        }
+
+    </div>
+</div>
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "delConfirm", @class = "modal hide fade", tabindex = "-1", role = "dialog" }))
+{  
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Alerta</h3>
+    </div>
+    <div class="modal-body">
+        <p>Esta seguro que desea Eliminar el Registro?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">No, Cancelar</button>
+        @Html.ActionLink("Sí, Eliminar", "Delete",
+                                            "Home",
+                                            new { id = @Model.ID_PROYECTO },
+                                            new { @class = "btn btn-primary" })
+    </div>    
+}
+
+
+@section scripts {
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.es.js"></script>
+
+    <script>
+        $('#FEC_INICIO').datepicker({
+            format: 'mm/dd/yyyy'
+        });
+    </script>
+}
